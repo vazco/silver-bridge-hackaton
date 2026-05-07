@@ -1,0 +1,27 @@
+{
+  "name": "@silver-bridge-hackaton/api",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "type": "module",
+  "scripts": {},
+  "devDependencies": {
+    "typescript": "^6",
+    "@silver-bridge-hackaton/config": "*",
+    "elysia": "^1.4.28"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13",
+    "@silver-bridge-hackaton/env": "*",
+    "@silver-bridge-hackaton/auth": "*",
+    "@silver-bridge-hackaton/db": "*",
+    "@trpc/server": "^11.16.0",
+    "@trpc/client": "^11.16.0"
+  }
+}

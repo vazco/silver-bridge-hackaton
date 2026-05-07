@@ -1,0 +1,37 @@
+// Better-T-Stack
+//
+// Website: https://www.better-t-stack.dev/
+// Stack Builder: https://www.better-t-stack.dev/new
+// Analytics: https://www.better-t-stack.dev/analytics
+// Showcase: https://www.better-t-stack.dev/showcase
+// Sponsor: https://github.com/sponsors/AmanVarshney01
+//
+// Add new addons with: npx create-better-t-stack add
+// This file is safe to delete
+
+{
+  "$schema": "https://r2.better-t-stack.dev/schema.json",
+  "version": "3.28.0",
+  "createdAt": "2026-05-07T09:33:28.874Z",
+  "reproducibleCommand": "npx create-better-t-stack@latest . --frontend tanstack-router --backend elysia --runtime node --database postgres --orm drizzle --api trpc --auth better-auth --payments none --addons mcp skills turborepo --examples none --db-setup neon --web-deploy none --server-deploy none --git --package-manager npm --install",
+  "database": "postgres",
+  "orm": "drizzle",
+  "backend": "elysia",
+  "runtime": "node",
+  "frontend": [
+    "tanstack-router"
+  ],
+  "addons": [
+    "mcp",
+    "skills",
+    "turborepo"
+  ],
+  "examples": [],
+  "auth": "better-auth",
+  "payments": "none",
+  "packageManager": "npm",
+  "dbSetup": "neon",
+  "api": "trpc",
+  "webDeploy": "none",
+  "serverDeploy": "none"
+}
