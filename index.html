@@ -3,23 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strona w budowie</title>
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    
+    <!-- SEO and social meta tags -->
+    <meta name="description" content="Strona Silver Bridge - wkrótce dostępna">
+    <meta name="theme-color" content="#4A90E2">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <title>Silver Bridge - Strona w budowie</title>
+    
     <style>
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            font-size: 24px;
             background-color: #f5f5f5;
             color: #333;
+        }
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <div>Tutaj wkrótce będzie nasza strona</div>
+    <main role="main">
+        <h1>Tutaj wkrótce będzie nasza strona</h1>
+    </main>
 </body>
 </html>
