@@ -1,0 +1,30 @@
+{
+  "name": "@silver-bridge-hackaton/db",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio",
+    "db:migrate": "drizzle-kit migrate"
+  },
+  "devDependencies": {
+    "typescript": "^6",
+    "@silver-bridge-hackaton/config": "*",
+    "drizzle-kit": "^0.31.8"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13",
+    "@silver-bridge-hackaton/env": "*",
+    "drizzle-orm": "^0.45.1",
+    "@neondatabase/serverless": "^1.0.2"
+  }
+}

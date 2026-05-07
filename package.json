@@ -1,0 +1,32 @@
+{
+  "name": "silver-bridge-hackaton",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:web": "turbo -F web dev",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F @silver-bridge-hackaton/db db:push",
+    "db:studio": "turbo -F @silver-bridge-hackaton/db db:studio",
+    "db:generate": "turbo -F @silver-bridge-hackaton/db db:generate",
+    "db:migrate": "turbo -F @silver-bridge-hackaton/db db:migrate"
+  },
+  "packageManager": "npm@11.12.1",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13",
+    "@silver-bridge-hackaton/env": "*"
+  },
+  "devDependencies": {
+    "typescript": "^6",
+    "@types/node": "^22.13.14",
+    "@silver-bridge-hackaton/config": "*",
+    "turbo": "^2.8.12"
+  }
+}

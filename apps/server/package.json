@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsdown",
+    "check-types": "tsc -b",
+    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13",
+    "@silver-bridge-hackaton/env": "*",
+    "@silver-bridge-hackaton/api": "*",
+    "@silver-bridge-hackaton/auth": "*",
+    "@silver-bridge-hackaton/db": "*",
+    "elysia": "^1.4.28",
+    "@elysiajs/cors": "^1.4.1",
+    "@sinclair/typebox": "^0.34.49",
+    "@elysiajs/node": "^1.4.5",
+    "@trpc/server": "^11.16.0",
+    "@elysiajs/trpc": "^1.1.0",
+    "better-auth": "1.6.9",
+    "@hono/trpc-server": "^0.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^6",
+    "tsdown": "^0.21.9",
+    "@silver-bridge-hackaton/config": "*",
+    "tsx": "^4.19.2",
+    "@types/node": "^22.13.14"
+  }
+}
