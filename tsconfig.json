@@ -1,0 +1,3 @@
+{
+  "extends": "@silver-bridge-hackaton/config/tsconfig.base.json"
+}
