@@ -5,96 +5,101 @@ import {
   CardHeader,
   CardTitle,
 } from "@silver-bridge-hackaton/ui/components/card";
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, MapPin } from "lucide-react";
 
+import { mockClinics, type Clinic } from "@/data/mockClinics";
+
 export const Route = createFileRoute("/przychodnie")({
   component: PrzychodnieComponent,
+  head: () => ({
+    meta: [
+      {
+        title: "Nasze Przychodnie - Silver Bridge Hackaton",
+      },
+      {
+        name: "description",
+        content:
+          "Znajdź najbliższą przychodnię. Lista naszych placówek z godzinami otwarcia i danymi kontaktowymi.",
+      },
+      {
+        property: "og:title",
+        content: "Nasze Przychodnie",
+      },
+      {
+        property: "og:description",
+        content: "Znajdź najbliższą przychodnię. Lista 5 placówek w całej Polsce.",
+      },
+    ],
+  }),
 });
 
-interface Clinic {
-  id: number;
-  name: string;
-  address: string;
-  city: string;
-  postalCode: string;
-  openingHours: {
-    weekdays: string;
-    saturday: string;
-    sunday: string;
-  };
-  phone: string;
-}
-
-const mockClinics: Clinic[] = [
-  {
-    id: 1,
-    name: "Przychodnia Centrum Zdrowia",
-    address: "ul. Marszałkowska 42",
-    city: "Warszawa",
-    postalCode: "00-548",
-    openingHours: {
-      weekdays: "8:00 - 20:00",
-      saturday: "9:00 - 15:00",
-      sunday: "Zamknięte",
-    },
-    phone: "+48 22 123 45 67",
-  },
-  {
-    id: 2,
-    name: "Przychodnia Medica Plus",
-    address: "ul. Piotrkowska 156",
-    city: "Łódź",
-    postalCode: "90-226",
-    openingHours: {
-      weekdays: "7:00 - 19:00",
-      saturday: "8:00 - 14:00",
-      sunday: "Zamknięte",
-    },
-    phone: "+48 42 234 56 78",
-  },
-  {
-    id: 3,
-    name: "Przychodnia Rodzinna Vita",
-    address: "ul. Floriańska 28",
-    city: "Kraków",
-    postalCode: "31-019",
-    openingHours: {
-      weekdays: "8:00 - 18:00",
-      saturday: "9:00 - 13:00",
-      sunday: "Zamknięte",
-    },
-    phone: "+48 12 345 67 89",
-  },
-  {
-    id: 4,
-    name: "Centrum Medyczne Zdrowie+",
-    address: "ul. Długa 89",
-    city: "Gdańsk",
-    postalCode: "80-831",
-    openingHours: {
-      weekdays: "7:30 - 20:00",
-      saturday: "8:00 - 16:00",
-      sunday: "10:00 - 14:00",
-    },
-    phone: "+48 58 456 78 90",
-  },
-  {
-    id: 5,
-    name: "Przychodnia Nova Med",
-    address: "ul. Świdnicka 53",
-    city: "Wrocław",
-    postalCode: "50-030",
-    openingHours: {
-      weekdays: "8:00 - 19:00",
-      saturday: "9:00 - 15:00",
-      sunday: "Zamknięte",
-    },
-    phone: "+48 71 567 89 01",
-  },
-];
-
 function PrzychodnieComponent() {
+  const {
+    data: clinics,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["clinics"],
+    queryFn: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      return mockClinics;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto max-w-6xl px-4 py-8">
+        <div className="mb-8">
+          <h1 className="mb-2 text-3xl font-bold">Przychodnie</h1>
+          <p className="text-muted-foreground">
+            Lista dostępnych przychodni medycznych
+          </p>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <p className="text-muted-foreground">Ładowanie przychodni...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto max-w-6xl px-4 py-8">
+        <div className="mb-8">
+          <h1 className="mb-2 text-3xl font-bold">Przychodnie</h1>
+          <p className="text-muted-foreground">
+            Lista dostępnych przychodni medycznych
+          </p>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <p className="text-destructive">
+            Błąd: {error instanceof Error ? error.message : "Nie udało się załadować przychodni"}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!clinics || clinics.length === 0) {
+    return (
+      <div className="container mx-auto max-w-6xl px-4 py-8">
+        <div className="mb-8">
+          <h1 className="mb-2 text-3xl font-bold">Przychodnie</h1>
+          <p className="text-muted-foreground">
+            Lista dostępnych przychodni medycznych
+          </p>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <p className="text-muted-foreground">
+            Brak dostępnych przychodni.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto max-w-6xl px-4 py-8">
       <div className="mb-8">
@@ -105,7 +110,7 @@ function PrzychodnieComponent() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {mockClinics.map((clinic) => (
+        {clinics.map((clinic) => (
           <Card key={clinic.id} className="flex flex-col">
             <CardHeader>
               <CardTitle>{clinic.name}</CardTitle>
@@ -155,8 +160,9 @@ function PrzychodnieComponent() {
                   <div className="text-sm">
                     <span className="text-muted-foreground">Telefon: </span>
                     <a
-                      href={`tel:${clinic.phone}`}
+                      href={`tel:${clinic.phone.replace(/\s/g, "")}`}
                       className="font-medium hover:underline"
+                      aria-label={`Zadzwoń do ${clinic.name}`}
                     >
                       {clinic.phone}
                     </a>
